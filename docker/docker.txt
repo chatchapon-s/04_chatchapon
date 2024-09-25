@@ -53,3 +53,12 @@ docker network ls
 docker run --name mysql02 --network wordpress02 -v mysql_volume:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1111 -e MYSQL_DATABASE=wordpress_db -e MYSQL_USER=wordpress -e MYSQL_PASSWORD=wordpress -d mysql:5.7 
 docker run --name pma02 --network wordpress02 -p 8889:80 -e PMA_ARBITRARY=1 -d phpmyadmin/phpmyadmin
 docker run -d --name wordpress02 --network wordpress02 -v wp_volume:/var/www/html -p 889:80 -e  WORDPRESS_DB_HOST=mysql02 -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_PASSWORD=wordpress -e WORDPRESS_DB_NAME=wordpress_db wordpress
+
+
+**รูปแบบที่ 3 bind mount**
+
+docker network create wordpress03
+docker run --name mysql03 --network wordpress03 -v D:\github\04_chatchapon\docker\wordpress\mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1111 -e MYSQL_DATABASE=wordpress_db -e MYSQL_USER=wordpress -e MYSQL_PASSWORD=wordpress -d mysql:5.7 
+docker run --name pma03 --network wordpress03 -p 8890:80 -e PMA_ARBITRARY=1 -d phpmyadmin/phpmyadmin
+docker run -d --name wordpress03 --network wordpress03 -v D:\github\04_chatchapon\docker\wordpress\wp:/var/www/html -p 890:80 -e  WORDPRESS_DB_HOST=mysql03 -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_PASSWORD=wordpress -e WORDPRESS_DB_NAME=wordpress_db wordpress
+

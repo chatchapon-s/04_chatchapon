@@ -62,3 +62,35 @@ docker run --name mysql03 --network wordpress03 -v D:\github\04_chatchapon\docke
 docker run --name pma03 --network wordpress03 -p 8890:80 -e PMA_ARBITRARY=1 -d phpmyadmin/phpmyadmin
 docker run -d --name wordpress03 --network wordpress03 -v D:\github\04_chatchapon\docker\wordpress\wp:/var/www/html -p 890:80 -e  WORDPRESS_DB_HOST=mysql03 -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_PASSWORD=wordpress -e WORDPRESS_DB_NAME=wordpress_db wordpress
 
+docker compose
+
+โครงสร้าง
+version: '3'
+services:
+  wordpress:
+  db:
+  phpmyadmin:
+networks:
+  myNetwork:
+volumes:
+  database:
+
+รันปกติ
+docker-compose up
+
+รันแบบระบุชื่อ
+docker-compose up -f aaa.yml
+
+รันแบบยังไม่เริ่มทำงาน
+docker-compose up --no-start
+
+ปิดและลบ
+docker-compose down
+
+รันแบบไม่ค้าง
+docker-compose up -d
+
+docker-compose ps
+
+docker-compose start
+
